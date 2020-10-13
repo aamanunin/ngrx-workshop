@@ -9,7 +9,7 @@ import {
   NotificationsService,
   CustomersService,
   ProjectsState,
-  AddProject, UpdateProject, DeleteProject
+  AddProject, UpdateProject, DeleteProject, initialProjects, LoadProject
 } from '@workshop/core-data';
 
 const emptyProject: Project = {
@@ -35,12 +35,13 @@ export class ProjectsComponent implements OnInit {
     private projectsService: ProjectsService,
     private customerService: CustomersService,
     private store: Store<ProjectsState>,
-    private ns: NotificationsService) {
-      this.projects$ = store.pipe(
-        select('projects'),
-        map(projectsState => projectsState.projects)
-      )
-    }
+    private ns: NotificationsService
+  ) {
+    this.projects$ = store.pipe(
+      select('projects'),
+      map(data => data.ids.map(id => data.entities[id]))
+    );
+  }
 
   ngOnInit() {
     this.getProjects();
@@ -65,7 +66,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    // this.projects$ = this.projectsService.all();
+    this.store.dispatch(new LoadProject(initialProjects));
   }
 
   saveProject(project) {
