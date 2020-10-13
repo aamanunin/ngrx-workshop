@@ -9,7 +9,8 @@ import {
   NotificationsService,
   CustomersService,
   ProjectsState,
-  AddProject, UpdateProject, DeleteProject, initialProjects, LoadProject
+  AddProject, UpdateProject, DeleteProject, initialProjects, LoadProject,
+  selectAllProjects
 } from '@workshop/core-data';
 
 const emptyProject: Project = {
@@ -38,8 +39,7 @@ export class ProjectsComponent implements OnInit {
     private ns: NotificationsService
   ) {
     this.projects$ = store.pipe(
-      select('projects'),
-      map(data => data.ids.map(id => data.entities[id]))
+      select(selectAllProjects)
     );
   }
 

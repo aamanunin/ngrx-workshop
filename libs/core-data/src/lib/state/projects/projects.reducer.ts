@@ -29,12 +29,6 @@ export const initialProjects: Project[] = [
   }
 ];
 
-const createProject = (projects, project) => [...projects, project];
-const updateProject = (projects, project) => projects.map(p => {
-  return p.id === project.id ? Object.assign({}, project) : p;
-});
-const deleteProject = (projects, project) => projects.filter(w => project.id !== w.id);
-
 // 01 Define the shape of my state
 export interface ProjectsState extends EntityState<Project> {
   selectedProjectId: string | null;
@@ -68,3 +62,11 @@ export function projectsReducers(
         return state;
     }
 }
+
+export const getSelectedProjectId = (state: ProjectsState) => state.selectedProjectId;
+
+const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
+
+export const selectProjectIds = selectIds;
+export const selectProjectEntities = selectEntities;
+export const selectAllProjects = selectAll;
