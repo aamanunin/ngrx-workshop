@@ -66,7 +66,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.store.dispatch(new LoadProject(initialProjects));
+    this.store.dispatch(new LoadProject());
   }
 
   saveProject(project) {

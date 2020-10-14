@@ -3,8 +3,13 @@ import { Project } from '@workshop/core-data';
 
 export enum ProjectsActionTypes {
   selectProject = '[Projects] Select data',
+
   loadProject = '[Projects] Load data',
+  projectsLoaded = '[Projects] Data Loaded',
+
   addProject = '[Projects] Add data',
+  projectAdded = '[Projects] Data added',
+
   updateProject = '[Projects] Update data',
   deleteProject = '[Projects] Delete data'
 }
@@ -12,37 +17,49 @@ export enum ProjectsActionTypes {
 export class SelectProject implements Action {
   readonly type = ProjectsActionTypes.selectProject;
 
-  constructor(private payload: Project) {
+  constructor(public payload: Project) {
   }
 }
 
 export class LoadProject implements Action {
   readonly type = ProjectsActionTypes.loadProject;
+}
 
-  constructor(private payload: Project[]) {
+export class ProjectsLoaded implements Action {
+  readonly type = ProjectsActionTypes.projectsLoaded;
+
+  constructor(public payload: Project[]) {
   }
 }
 
 export class AddProject implements Action {
   readonly type = ProjectsActionTypes.addProject;
 
-  constructor(private payload: Project) {
+  constructor(public payload: Project) {
+  }
+}
+
+export class ProjectAdded implements Action {
+  readonly type = ProjectsActionTypes.projectAdded;
+
+  constructor(public payload: Project) {
   }
 }
 
 export class UpdateProject implements Action {
   readonly type = ProjectsActionTypes.updateProject;
 
-  constructor(private payload: Project) {
+  constructor(public payload: Project) {
   }
 }
 
 export class DeleteProject implements Action {
   readonly type = ProjectsActionTypes.deleteProject;
 
-  constructor(private payload: Project) {
+  constructor(public payload: Project) {
   }
 }
 
 export type ProjectsAction =
-  SelectProject | AddProject | UpdateProject | DeleteProject | LoadProject;
+  SelectProject | AddProject | UpdateProject | DeleteProject | LoadProject
+  | ProjectAdded | ProjectsLoaded;

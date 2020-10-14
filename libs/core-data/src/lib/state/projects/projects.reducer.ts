@@ -50,9 +50,9 @@ export function projectsReducers(
           ...state,
           selectedProjectId: action.payload
         };
-      case ProjectsActionTypes.loadProject:
+      case ProjectsActionTypes.projectsLoaded:
         return adapter.addMany(action.payload, state);
-      case ProjectsActionTypes.addProject:
+      case ProjectsActionTypes.projectAdded:
         return adapter.addOne(action.payload, state);
       case ProjectsActionTypes.updateProject:
         return adapter.updateOne(action.payload, state);
