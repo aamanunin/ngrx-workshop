@@ -10,7 +10,7 @@ export { CustomersFacade } from './lib/state/customers/customers.facade';
 
 // Expose projects state
 export { ProjectsState, initialProjects } from './lib/state/projects/projects.reducer';
-export { selectAllProjects } from './lib/state';
+export { selectAllProjects, selectCurrentProject } from './lib/state';
 export {
   SelectProject,
   LoadProject,
